@@ -1,10 +1,10 @@
-let botao = window.document.getElementById('start');
+let botaoStart = window.document.getElementById('start');
 let sequencia = new Array;
 let random = 0;
 let nivel = 0;
 let pontos = window.document.getElementById('pontos');
 let level = document.querySelector('div#level');
-let dificuldadeTxt = window.document.getElementById('dificuldade')
+let dificuldadeTxt = window.document.getElementById('dificuldade');
 let clicado = false;
 
 // iniciar
@@ -15,12 +15,12 @@ function iniciar(){
     } else {
         if (saldoNeg >= 1) {
             resetarVariáveis();
-            //window.location.reload(true);   
+            iniciar();
         }
     }
 }
 
-// function resetar variáveis
+// resetar variáveis
 function resetarVariáveis(){
     random = 0;
     nivel = 0;
@@ -35,11 +35,12 @@ function resetarVariáveis(){
     difi = '';
     resp = [];
     sequencia = [];
+    botaoStart.value = 'START';
 }
 
 // function principal
 function princial(){  
-    botao.style.background = 'rgb(88, 88, 88)';
+    botaoStart.style.background = 'rgb(88, 88, 88)';
     gameIniciado = true;
     clicado = true;
     liberado = false; 
@@ -99,8 +100,8 @@ function verificar(){
             pontos.innerHTML = `Você perdeu`;
             level.innerHTML = `Recorde: ${nivel}`;
             dificuldadeTxt.innerHTML = ``;
-            botao.style.background = 'white';
-            botao.value = `RESET`;
+            botaoStart.style.background = 'white';
+            botaoStart.value = `RESET`;
         } else {
             nivel++;
             pos = 0;
