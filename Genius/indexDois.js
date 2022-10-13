@@ -7,26 +7,26 @@ let level = document.querySelector('div#level');
 let dificuldadeTxt = window.document.getElementById('dificuldade')
 let clicado = false;
 
-// iniciar
-let gameIniciado = false;
-function iniciar(){
-    if (gameIniciado != true) {
-        princial();
-    } else {
-        if (saldoNeg >= 1) {
-            window.location.reload(true);   
-        }
+// testar se o jogo já está em andamento
+let iniciado = false;
+function testar(){
+    if (iniciado == false) {
+        iniciar();
     }
 }
 
-// function principal
-function princial(){  
-    botao.style.background = 'rgb(88, 88, 88)';
-    gameIniciado = true;
-    clicado = true;
-    liberado = false; 
-    sorteio();
-    temporizador(); 
+// iniciar
+function iniciar(){  
+    if (saldoNeg < 1) {
+        botao.style.background = 'rgb(88, 88, 88)';
+        iniciado = true;
+        clicado = true;
+        liberado = false; 
+        sorteio();
+        temporizador(); 
+    } else {
+        window.location.reload(true);
+    }
 }
 
 // sorteio
@@ -86,7 +86,7 @@ function verificar(){
         } else {
             nivel++;
             pos = 0;
-            princial();
+            iniciar();
         }
     }
 }
