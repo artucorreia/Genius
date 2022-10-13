@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <title>Genius</title>
+    <link rel="stylesheet" href="style.css">
+</head>  
+<body> 
+    <header>
+        <h1>GENIUS</h1>
+        
+        <h2> 
+            <div id="pontos"></div>
+            <div id="level"></div>
+            <div id="dificuldade"></div>
+        </h2>    
+    </header>
+    
+    <section>
+        <div id="cores">
+            <input type="button" value="" id="verde" onclick="green()"> 
+            <input type="button" value="" id="vermelho" onclick="red()"> 
+            <br> 
+            <input type="button" value="" id="amarelo" onclick="yellow()">
+            <input type="button" value="" id="azul" onclick="blue()"> 
+        </div>
+
+        <div id="botao">
+            <input type="button" value="START" id="start" onclick="iniciar()">
+        </div>
+    </section>
+    
+    <footer>
+        &copy;Arthur
+    </footer>
+
+    <script src="resetar-valores.js"></script>
+</body>
+</html>
