@@ -14,9 +14,27 @@ function iniciar(){
         princial();
     } else {
         if (saldoNeg >= 1) {
-            window.location.reload(true);   
+            resetarVariáveis();
+            //window.location.reload(true);   
         }
     }
+}
+
+// function resetar variáveis
+function resetarVariáveis(){
+    random = 0;
+    nivel = 0;
+    clicado = false;
+    gameIniciado = false;
+    liberado = false;
+    saldoNeg = 0;
+    pos = 0;
+    cont = 0;
+    c = 0;
+    velocidade = 0;
+    difi = '';
+    resp = [];
+    sequencia = [];
 }
 
 // function principal
@@ -51,7 +69,7 @@ function temporizador(){
 }
 
 // parar o temporizador 
-liberado = false;
+let liberado = false;
 function paraTemporizador(){
     clearInterval(tempo);
     c = 0;
