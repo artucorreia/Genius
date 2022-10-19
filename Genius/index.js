@@ -35,7 +35,7 @@ function resetarVariáveis(){
     difi = '';
     resp = [];
     sequencia = [];
-    botaoStart.value = 'START';
+    botaoStart.value = 'INICIAR';
 }
 
 // function principal
@@ -98,15 +98,24 @@ function verificar(){
     if ((saldoNeg != 0) || (resp.length == sequencia.length)) {
         if (saldoNeg >= 1){
             pontos.innerHTML = `Você perdeu`;
-            level.innerHTML = `Recorde: ${nivel}`;
-            dificuldadeTxt.innerHTML = ``;
+            level.innerHTML = `Pontuação: ${nivel}`;
+            record(nivel);
+            dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
             botaoStart.style.background = 'white';
-            botaoStart.value = `RESET`;
+            botaoStart.value = `REINICIAR`;
         } else {
             nivel++;
             pos = 0;
             princial();
         }
+    }
+}
+
+// verificar qual o recorde do jogador
+let recorde = 0;
+function record(n){
+    if (n > recorde) {
+        recorde = n;
     }
 }
 
