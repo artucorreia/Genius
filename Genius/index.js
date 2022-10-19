@@ -248,4 +248,4 @@ function mensagens(){
     level.innerHTML += `${nivel+1}`;
     dificuldadeTxt.innerHTML = `Dificuldade: `;
     dificuldadeTxt.innerHTML += `${difi}`;
-}
+}   
