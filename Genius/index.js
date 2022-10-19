@@ -77,13 +77,13 @@ function paraTemporizador(){
     cont = 0;
     bip.play();
     verde.style.background = 'rgb(128, 255, 0)';
-    setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, 100);
+    setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, 200);
     vermelho.style.background = 'rgb(255, 0, 51)';
-    setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 100);
+    setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 200);
     azul.style.background = 'deepskyblue';
-    setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 100);
+    setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 200);
     amarelo.style.background = 'rgb(255, 166, 0)';
-    setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 100);
+    setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 200);
     liberado = true;
 }
 
@@ -99,8 +99,7 @@ function verificar(){
         if (saldoNeg >= 1){
             pontos.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
-            record(nivel);
-            dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
+            msgRecorde(nivel);
             botaoStart.style.background = 'white';
             botaoStart.value = `REINICIAR`;
         } else {
@@ -113,9 +112,12 @@ function verificar(){
 
 // verificar qual o recorde do jogador
 let recorde = 0;
-function record(n){
+function msgRecorde(n){
     if (n > recorde) {
         recorde = n;
+        dificuldadeTxt.innerHTML = `Novo Recorde: ${recorde}`;
+    } else {
+        dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
     }
 }
 
