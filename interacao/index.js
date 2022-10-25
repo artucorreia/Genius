@@ -100,6 +100,7 @@ function verificar(){
             pontos.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
             msgRecorde(nivel);
+            liberado = false;
             botaoStart.style.background = 'white';
             botaoStart.value = `REINICIAR`;
         } else {
@@ -119,7 +120,6 @@ function msgRecorde(n){
     } else {
         dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
     }
-    liberado = false;
 }
 
 // associação de valores
