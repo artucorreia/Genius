@@ -119,6 +119,7 @@ function msgRecorde(n){
     } else {
         dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
     }
+    liberado = false;
 }
 
 // associação de valores
