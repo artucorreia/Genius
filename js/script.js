@@ -2,7 +2,7 @@ const btnStart = window.document.getElementById('start');
 let sequencia = [];
 let random = 0;
 let nivel = 0;
-const pontos = window.document.getElementById('pontos');
+const score = window.document.getElementById('score');
 const level = window.document.getElementById('level');
 const difficultyTxt = window.document.getElementById('difficulty');
 let clicked = false;
@@ -98,7 +98,7 @@ function verificar(){
     pos++;
     if ((saldoNeg != 0) || (resp.length == sequencia.length)) {
         if (saldoNeg >= 1){
-            pontos.innerHTML = `Você perdeu`;
+            score.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
             msgRecorde(nivel);
             open = false;
@@ -270,8 +270,8 @@ function difficulty(){
 
 //mensagens
 function mensagens(){
-    pontos.innerHTML = `Pontuação: `;
-    pontos.innerHTML += `${nivel}`;
+    score.innerHTML = `Pontuação: `;
+    score.innerHTML += `${nivel}`;
     level.innerHTML = `Nível: `;
     level.innerHTML += `${nivel+1}`;
     difficultyTxt.innerHTML = `Dificuldade: `;
