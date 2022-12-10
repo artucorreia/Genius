@@ -68,14 +68,9 @@ function timer(){
             tempo = setInterval(piscaCor, 800);
             break; 
     }
-}
+};
 
-// parar o timer 
-let open = false;
-function paratimer(){
-    clearInterval(tempo);
-    c = 0;
-    cont = 0;
+const turnOnAll = () => {
     bip.play();
     verde.style.background = 'rgb(128, 255, 0)';
     vermelho.style.background = 'rgb(255, 0, 51)';
@@ -85,8 +80,18 @@ function paratimer(){
     setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 200);
     setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 200);
     setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 200);
+};
+
+// parar o timer 
+let open = false;
+function stopTimer(){
+    clearInterval(tempo);
+    c = 0;
+    cont = 0;
+    turnOnAll()
     open = true;
-}
+    inactive();
+};
 
 // verificação
 let saldoNeg = 0;
@@ -100,7 +105,7 @@ function verificar(){
         if (saldoNeg >= 1){
             score.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
-            msgRecorde(nivel);
+            msgRecord(nivel);
             open = false;
             btnStart.style.background = 'white';
             btnStart.value = `REINICIAR`;
@@ -110,24 +115,25 @@ function verificar(){
             main();
         }
     }
-}
+};
 
 // verificar qual o recorde do jogador
 let recorde = 0;
-function msgRecorde(n){
+function msgRecord(n){
     if (n > recorde) {
         recorde = n;
         difficultyTxt.innerHTML = `Novo Recorde: ${recorde}`;
     } else {
         difficultyTxt.innerHTML = `Recorde: ${recorde}`;
     }
-}
+};
 
 // associação de valores
-let resp = new Array;
+let resp = [];
 let cont = 0;
 let bip = new Audio('bip.mp3');
 const green = () => {
+    clearInterval(inactiveInterval);
     if (clicked == true) {        
         if (open == true) {
             resp[cont] = 1;
@@ -141,8 +147,9 @@ const green = () => {
     } else {
         window.alert('Pressione o botão INICIAR');
     }
-}
+};
 const red = () => {
+    clearInterval(inactiveInterval);
     if (clicked == true) {
         if (open == true) {
             resp[cont] = 2;
@@ -156,8 +163,9 @@ const red = () => {
     } else {
         window.alert('Pressione o botão INICIAR');
     }
-}
+};
 const blue = () => {
+    clearInterval(inactiveInterval);
     if (clicked == true) {
         if (open == true) {
             resp[cont] = 3;
@@ -171,8 +179,9 @@ const blue = () => {
     } else {
         window.alert('Pressione o botão INICIAR');
     }
-}
+};
 const yellow = () => {
+    clearInterval(inactiveInterval);
     if (clicked == true) {
         if (open == true) {
             resp[cont] = 4;
@@ -186,7 +195,7 @@ const yellow = () => {
     } else {
         window.alert('Pressione o botão INICIAR');
     }
-}
+};
 
 // direciona para funções a partir do elemento pai
 const optionsColor = {
@@ -200,7 +209,7 @@ const btns = id => optionsColor[id]();
 
 const divBtns = window.document.getElementById('btns');
 divBtns.addEventListener('click', (event) => {
-    btns(event.target.id)
+    btns(event.target.id);
 });
 
 // piscar cores
@@ -246,11 +255,11 @@ function piscaCor(){
                 break;
         }  
     } else {
-        paratimer();
+        stopTimer();
     }
-}
+};
 
-// mudança na speed
+// mudança na velocidade
 let difi = '';
 function difficulty(){
     if (nivel <= 2) {
@@ -266,9 +275,9 @@ function difficulty(){
         mensagens();
         return 3;     
     }
-}
+};
 
-//mensagens
+// mensagens
 function mensagens(){
     score.innerHTML = `Pontuação: `;
     score.innerHTML += `${nivel}`;
@@ -276,18 +285,26 @@ function mensagens(){
     level.innerHTML += `${nivel+1}`;
     difficultyTxt.innerHTML = `Dificuldade: `;
     difficultyTxt.innerHTML += `${difi}`;
-}  
+};  
 
-// contador de inatividade
-// let mili = 0;
-// let seg = 0;
-// const timer = () => {
-//     mili = mili + 10;
-//     if (mili == 100) {
-//         mili = 0;
-//         seg++;
-//         console.log(seg);
-//     }
-// };
+// verifica a inatividade 
+let mili = 0;
+let aux = 0;
+const inactiveTimer = () => {
+    mili += 10;
+    if (mili == 600) {
+        mili = 0;
+        aux++;
+        turnOnAll();
+    }
+    if (aux == 3) {
+        clearInterval(inactiveInterval);
+        saldoNeg++;
+        verificar();
+    }
+};
 
-// setInterval(timer, 100);
+const inactive = () => {
+    mili = 0;
+    inactiveInterval = setInterval(inactiveTimer, 100);
+};
