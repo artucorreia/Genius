@@ -1,51 +1,52 @@
-const botaoStart = window.document.getElementById('start');
+const btnStart = window.document.getElementById('start');
 let sequencia = [];
 let random = 0;
 let nivel = 0;
 const pontos = window.document.getElementById('pontos');
 const level = window.document.getElementById('level');
-const dificuldadeTxt = window.document.getElementById('dificuldade');
-let clicado = false;
+const difficultyTxt = window.document.getElementById('difficulty');
+let clicked = false;
 
 // iniciar
-let gameIniciado = false;
-botaoStart.addEventListener('click', () => {
-    if (gameIniciado != true) {
-        princial();
+const start = () => {
+    if (gameStarted != true) {
+        main();
     } else {
         if (saldoNeg >= 1) {
             resetarVariáveis();
-            iniciar();
+            start();
         }
     }
-});
+};
+let gameStarted = false;
+btnStart.addEventListener('click', start); 
 
 // resetar variáveis
 function resetarVariáveis(){
     random = 0;
     nivel = 0;
-    clicado = false;
-    gameIniciado = false;
-    liberado = false;
+    clicked = false;
+    gameStarted = false;
+    open = false;
     saldoNeg = 0;
     pos = 0;
     cont = 0;
     c = 0;
-    velocidade = 0;
+    speed = 0;
     difi = '';
     resp = [];
     sequencia = [];
-    botaoStart.value = 'INICIAR';
+    btnStart.value = 'INICIAR';
 }
 
 // function principal
-function princial(){  
-    botaoStart.style.background = 'rgb(88, 88, 88)';
-    gameIniciado = true;
-    clicado = true;
-    liberado = false; 
+function main(){  
+    btnStart.style.background = 'rgb(88, 88, 88)';
+    gameStarted = true;
+    clicked = true;
+    open = false; 
     sorteio();
-    temporizador(); 
+    timer(); 
 }
 
 // sorteio
@@ -55,8 +56,8 @@ function sorteio(){
 }
 
 // temporizador
-function temporizador(){
-    switch(dificuldade()){
+function timer(){
+    switch(difficulty()){
         case 1:
             tempo = setInterval(piscaCor, 2000);
             break;
@@ -69,9 +70,9 @@ function temporizador(){
     }
 }
 
-// parar o temporizador 
-let liberado = false;
-function paraTemporizador(){
+// parar o timer 
+let open = false;
+function paratimer(){
     clearInterval(tempo);
     c = 0;
     cont = 0;
@@ -84,7 +85,7 @@ function paraTemporizador(){
     setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 200);
     setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 200);
     setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 200);
-    liberado = true;
+    open = true;
 }
 
 // verificação
@@ -100,13 +101,13 @@ function verificar(){
             pontos.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
             msgRecorde(nivel);
-            liberado = false;
-            botaoStart.style.background = 'white';
-            botaoStart.value = `REINICIAR`;
+            open = false;
+            btnStart.style.background = 'white';
+            btnStart.value = `REINICIAR`;
         } else {
             nivel++;
             pos = 0;
-            princial();
+            main();
         }
     }
 }
@@ -116,9 +117,9 @@ let recorde = 0;
 function msgRecorde(n){
     if (n > recorde) {
         recorde = n;
-        dificuldadeTxt.innerHTML = `Novo Recorde: ${recorde}`;
+        difficultyTxt.innerHTML = `Novo Recorde: ${recorde}`;
     } else {
-        dificuldadeTxt.innerHTML = `Recorde: ${recorde}`;
+        difficultyTxt.innerHTML = `Recorde: ${recorde}`;
     }
 }
 
@@ -127,8 +128,8 @@ let resp = new Array;
 let cont = 0;
 let bip = new Audio('bip.mp3');
 const green = () => {
-    if (clicado == true) {        
-        if (liberado == true) {
+    if (clicked == true) {        
+        if (open == true) {
             resp[cont] = 1;
             cont++;
             // efeito
@@ -138,12 +139,12 @@ const green = () => {
             verificar();
         }
     } else {
-        window.alert('Pressione o botão START para iniciar');
+        window.alert('Pressione o botão INICIAR');
     }
 }
 const red = () => {
-    if (clicado == true) {
-        if (liberado == true) {
+    if (clicked == true) {
+        if (open == true) {
             resp[cont] = 2;
             cont++;
             // efeito
@@ -153,12 +154,12 @@ const red = () => {
             verificar();
         }
     } else {
-        window.alert('Pressione o botão START para iniciar');
+        window.alert('Pressione o botão INICIAR');
     }
 }
 const blue = () => {
-    if (clicado == true) {
-        if (liberado == true) {
+    if (clicked == true) {
+        if (open == true) {
             resp[cont] = 3;
             cont++;
             // efeito
@@ -168,12 +169,12 @@ const blue = () => {
             verificar();
         }
     } else {
-        window.alert('Pressione o botão START para iniciar');
+        window.alert('Pressione o botão INICIAR');
     }
 }
 const yellow = () => {
-    if (clicado == true) {
-        if (liberado == true) {
+    if (clicked == true) {
+        if (open == true) {
             resp[cont] = 4;
             cont++;
             // efeito
@@ -183,18 +184,19 @@ const yellow = () => {
             verificar();
         }
     } else {
-        window.alert('Pressione o botão START para iniciar');
+        window.alert('Pressione o botão INICIAR');
     }
 }
 
-const optionsBtns = {
+// direciona para funções a partir do elemento pai
+const optionsColor = {
     'verde':    () => green(),
     'vermelho': () => red(),
     'amarelo':  () => yellow(),
     'azul':     () => blue(), 
 };
 
-const btns = id => optionsBtns[id]();
+const btns = id => optionsColor[id]();
 
 const divBtns = window.document.getElementById('btns');
 divBtns.addEventListener('click', (event) => {
@@ -203,17 +205,17 @@ divBtns.addEventListener('click', (event) => {
 
 // piscar cores
 let c = 0;
-let velocidade = 0;
+let speed = 0;
 function piscaCor(){         
-    switch(dificuldade()){
+    switch(difficulty()){
         case 1:
-            velocidade = 1200;
+            speed = 1200;
             break;
         case 2:
-            velocidade = 1000;
+            speed = 1000;
             break;
         default:
-            velocidade = 500;
+            speed = 500;
             break;
     }
     if(c <= nivel){
@@ -221,36 +223,36 @@ function piscaCor(){
             case 1:
                 bip.play();
                 verde.style.background = 'rgb(128, 255, 0)';
-                setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, velocidade);
+                setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, speed);
                 c++;
                 break;
             case 2:
                 bip.play();
                 vermelho.style.background = 'rgb(255, 0, 51)';
-                setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, velocidade);
+                setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, speed);
                 c++;
                 break;
             case 3:
                 bip.play();
                 azul.style.background = 'rgb(0, 191, 255)';
-                setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, velocidade);
+                setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, speed);
                 c++;
                 break;
             default:
                 bip.play();
                 amarelo.style.background = 'rgb(255, 166, 0)';
-                setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, velocidade);
+                setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, speed);
                 c++;
                 break;
         }  
     } else {
-        paraTemporizador();
+        paratimer();
     }
 }
 
-// mudança na velocidade
+// mudança na speed
 let difi = '';
-function dificuldade(){
+function difficulty(){
     if (nivel <= 2) {
         difi = 'Fácil';
         mensagens();
@@ -272,6 +274,6 @@ function mensagens(){
     pontos.innerHTML += `${nivel}`;
     level.innerHTML = `Nível: `;
     level.innerHTML += `${nivel+1}`;
-    dificuldadeTxt.innerHTML = `Dificuldade: `;
-    dificuldadeTxt.innerHTML += `${difi}`;
+    difficultyTxt.innerHTML = `Dificuldade: `;
+    difficultyTxt.innerHTML += `${difi}`;
 }   
