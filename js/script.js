@@ -1,15 +1,15 @@
-let botaoStart = window.document.getElementById('start');
-let sequencia = new Array;
+const botaoStart = window.document.getElementById('start');
+let sequencia = [];
 let random = 0;
 let nivel = 0;
-let pontos = window.document.getElementById('pontos');
-let level = document.querySelector('div#level');
-let dificuldadeTxt = window.document.getElementById('dificuldade');
+const pontos = window.document.getElementById('pontos');
+const level = window.document.getElementById('level');
+const dificuldadeTxt = window.document.getElementById('dificuldade');
 let clicado = false;
 
 // iniciar
 let gameIniciado = false;
-function iniciar(){
+botaoStart.addEventListener('click', () => {
     if (gameIniciado != true) {
         princial();
     } else {
@@ -18,7 +18,7 @@ function iniciar(){
             iniciar();
         }
     }
-}
+});
 
 // resetar variáveis
 function resetarVariáveis(){
@@ -78,7 +78,7 @@ function paraTemporizador(){
     bip.play();
     verde.style.background = 'rgb(128, 255, 0)';
     vermelho.style.background = 'rgb(255, 0, 51)';
-    azul.style.background = 'deepskyblue';
+    azul.style.background = 'rgb(0, 191, 255)';
     amarelo.style.background = 'rgb(255, 166, 0)';
     setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, 200);
     setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 200);
@@ -126,7 +126,7 @@ function msgRecorde(n){
 let resp = new Array;
 let cont = 0;
 let bip = new Audio('bip.mp3');
-function green(){
+const green = () => {
     if (clicado == true) {        
         if (liberado == true) {
             resp[cont] = 1;
@@ -134,14 +134,14 @@ function green(){
             // efeito
             bip.play();
             verde.style.background = 'rgb(128, 255, 0)';
-            setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, 130);
+            setTimeout(() => {verde.style.background = 'rgb(55, 110, 0)'}, 100);
             verificar();
         }
     } else {
         window.alert('Pressione o botão START para iniciar');
     }
 }
-function red(){
+const red = () => {
     if (clicado == true) {
         if (liberado == true) {
             resp[cont] = 2;
@@ -149,29 +149,29 @@ function red(){
             // efeito
             bip.play();
             vermelho.style.background = 'rgb(255, 0, 51)';
-            setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 130);
+            setTimeout(() => {vermelho.style.background = 'rgb(117, 0, 23)'}, 100);
             verificar();
         }
     } else {
         window.alert('Pressione o botão START para iniciar');
     }
 }
-function blue(){
+const blue = () => {
     if (clicado == true) {
         if (liberado == true) {
             resp[cont] = 3;
             cont++;
             // efeito
             bip.play();
-            azul.style.background = 'deepskyblue';
-            setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 130);
+            azul.style.background = 'rgb(0, 191, 255)';
+            setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, 100);
             verificar();
         }
     } else {
         window.alert('Pressione o botão START para iniciar');
     }
 }
-function yellow(){
+const yellow = () => {
     if (clicado == true) {
         if (liberado == true) {
             resp[cont] = 4;
@@ -179,7 +179,7 @@ function yellow(){
             // efeito
             bip.play();
             amarelo.style.background = 'rgb(255, 166, 0)';
-            setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 130);
+            setTimeout(() => {amarelo.style.background = 'rgb(109, 71, 0)'}, 100);
             verificar();
         }
     } else {
@@ -187,13 +187,27 @@ function yellow(){
     }
 }
 
+const optionsBtns = {
+    'verde':    () => green(),
+    'vermelho': () => red(),
+    'amarelo':  () => yellow(),
+    'azul':     () => blue(), 
+};
+
+const btns = id => optionsBtns[id]();
+
+const divBtns = window.document.getElementById('btns');
+divBtns.addEventListener('click', (event) => {
+    btns(event.target.id)
+});
+
 // piscar cores
 let c = 0;
 let velocidade = 0;
 function piscaCor(){         
     switch(dificuldade()){
         case 1:
-            velocidade = 1500;
+            velocidade = 1200;
             break;
         case 2:
             velocidade = 1000;
@@ -218,7 +232,7 @@ function piscaCor(){
                 break;
             case 3:
                 bip.play();
-                azul.style.background = 'deepskyblue';
+                azul.style.background = 'rgb(0, 191, 255)';
                 setTimeout(() => {azul.style.background = 'rgb(0, 63, 83)'}, velocidade);
                 c++;
                 break;

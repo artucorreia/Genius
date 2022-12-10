@@ -6,30 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
     <title>Genius</title>
-    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>  
-<body> 
+<body id="main"> 
     <header>
-        <h1>GENIUS</h1>
-        <h2> 
+        <h1 class="cab">GENIUS</h1>
+        <h2 class="cab"> 
             <div id="pontos"></div>
             <div id="level"></div>
             <div id="dificuldade"></div>
         </h2>    
     </header>
     <section>
-        <div id="cores">
-            <input type="button" value="" id="verde" onclick="green()"> 
-            <input type="button" value="" id="vermelho" onclick="red()"> 
+        <div id="btns">
+            <input type="button" id="verde"> 
+            <input type="button" id="vermelho"> 
             <br> 
-            <input type="button" value="" id="amarelo" onclick="yellow()">
-            <input type="button" value="" id="azul" onclick="blue()"> 
+            <input type="button" id="amarelo">
+            <input type="button" id="azul"> 
         </div>
 
-        <div id="botao">
-            <input type="button" value="INICIAR" id="start" onclick="iniciar()">
+        <div id="btn">
+            <input type="button" value="INICIAR" id="start">
         </div>
     </section>
-    <script src="interacao/index.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
