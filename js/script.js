@@ -276,4 +276,18 @@ function mensagens(){
     level.innerHTML += `${nivel+1}`;
     difficultyTxt.innerHTML = `Dificuldade: `;
     difficultyTxt.innerHTML += `${difi}`;
-}   
+}  
+
+// contador de inatividade
+// let mili = 0;
+// let seg = 0;
+// const timer = () => {
+//     mili = mili + 10;
+//     if (mili == 100) {
+//         mili = 0;
+//         seg++;
+//         console.log(seg);
+//     }
+// };
+
+// setInterval(timer, 100);
