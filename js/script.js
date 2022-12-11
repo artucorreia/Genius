@@ -306,5 +306,6 @@ const inactiveTimer = () => {
 
 const inactive = () => {
     mili = 0;
+    aux = 0;
     inactiveInterval = setInterval(inactiveTimer, 100);
 };
