@@ -14,18 +14,18 @@
     padding: 0px;
 }
 
-body{
+body {
     background-image: linear-gradient(90deg, rgb(60, 60, 60), rgb(35, 35, 35));
     color: white;
 }
 
-header{
+header {
     font: normal normal 1.3em var(--font-padrao);
     text-align: center;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.308);
 } 
 
-header > .cab{
+header > .cab {
     margin-top: 2%;
 }
 
@@ -41,33 +41,33 @@ main > section {
     margin-top: 2.5%;
 }
 
-main .inp{
+main .inp {
     min-width: 130px;
     min-height: 130px;
     outline: 5px solid black;
 }
 
-main input#btnGreen{
+main input#btnGreen {
     background-color: var(--greenOff);
     border-radius: 100% 3% 3% 3%;
 }
 
-main input#btnRed{
+main input#btnRed {
     background-color: var(--redOff);
     border-radius: 3% 100% 3% 3%;
 }
 
-main input#btnBlue{
+main input#btnBlue {
     background-color: var(--blueOff);
     border-radius: 3% 3% 100% 3%;
 }
 
-main input#btnYellow{
+main input#btnYellow {
     background-color: var(--yellowOff);
     border-radius: 3% 3% 3% 100%;
 }
 
-main #btnStart{
+main #btnStart {
     padding: 4px;
     border-radius: 15px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.486);
