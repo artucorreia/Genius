@@ -78,68 +78,24 @@ let resp = [];
 let cont = 0;
 let bip = new Audio('./audio/bip.mp3');
 const green = () => {
-    if (clicked == true) {        
-        clearInterval(inactiveInterval);
-        if (open == true) {
-            resp[cont] = 1;
-            cont++;
-            // efeito
-            bip.play();
-            btnGreen.style.background = colors['greenOn'];
-            setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 100);
-            verificar();
-        }
-    } else {
-        window.alert('Pressione o botão INICIAR');
-    }
+    resp[cont] = 1;
+    btnGreen.style.background = colors['greenOn'];
+    setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 100);
 };
 const red = () => {
-    if (clicked == true) {
-        clearInterval(inactiveInterval);
-        if (open == true) {
-            resp[cont] = 2;
-            cont++;
-            // efeito
-            bip.play();
-            btnRed.style.background = colors['redOn'];
-            setTimeout(() => {btnRed.style.background = colors['redOff']}, 100);
-            verificar();
-        }
-    } else {
-        window.alert('Pressione o botão INICIAR');
-    }
+    resp[cont] = 2;
+    btnRed.style.background = colors['redOn'];
+    setTimeout(() => {btnRed.style.background = colors['redOff']}, 100);
 };
 const blue = () => {
-    if (clicked == true) {
-        clearInterval(inactiveInterval);
-        if (open == true) {
-            resp[cont] = 3;
-            cont++;
-            // efeito
-            bip.play();
-            btnBlue.style.background = colors['blueOn'];
-            setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 100);
-            verificar();
-        }
-    } else {
-        window.alert('Pressione o botão INICIAR');
-    }
+    resp[cont] = 3;
+    btnBlue.style.background = colors['blueOn'];
+    setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 100);
 };
 const yellow = () => {
-    if (clicked == true) {
-        clearInterval(inactiveInterval);
-        if (open == true) {
-            resp[cont] = 4;
-            cont++;
-            // efeito
-            bip.play();
-            btnYellow.style.background = colors['yellowOn'];
-            setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 100);
-            verificar();
-        }
-    } else {
-        window.alert('Pressione o botão INICIAR');
-    }
+    resp[cont] = 4;
+    btnYellow.style.background = colors['yellowOn'];
+    setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 100);
 };
 
 // direciona para funções a partir do elemento pai
@@ -150,11 +106,24 @@ const optionsColor = {
     'btnBlue':   () => blue(), 
 };
 
-const btns = id => optionsColor[id]();
+// procedimento padrão, para todas as cores
+const Options = id => {
+    if (clicked == true) {
+        clearInterval(inactiveInterval);
+        if (open == true) {
+            bip.play();
+            optionsColor[id]();
+            cont++;
+            verificar();
+        }
+    } else {
+        window.alert('Pressione o botão INICIAR');
+    }
+};
 
-const divBtns = window.document.getElementById('btns');
-divBtns.addEventListener('click', (event) => {
-    btns(event.target.id);
+const sectionBtns = window.document.getElementById('btns');
+sectionBtns.addEventListener('click', (event) => {
+    Options(event.target.id);
 });
 
 // verifica a inatividade 
@@ -268,7 +237,7 @@ const timer = () => {
 const raffle = () => {
     random = Math.floor(Math.random() * 4 + 1);
     sequencia.push(random);
-}
+};
 
 // const principal
 const main = () => {  
@@ -278,7 +247,7 @@ const main = () => {
     open = false; 
     raffle();
     timer(); 
-}
+};
 
 // resetar variáveis
 const resetVariables = () => {
