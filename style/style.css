@@ -30,7 +30,7 @@ header > .cab{
 }
 
 header h2 {
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 main {
@@ -38,7 +38,7 @@ main {
 }
 
 main > section {
-    margin-top: 2%;
+    margin-top: 2.5%;
 }
 
 main .inp{
