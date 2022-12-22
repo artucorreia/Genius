@@ -41,9 +41,9 @@ main > section {
     margin-top: 2.5%;
 }
 
-main .inp {
-    min-width: 130px;
-    min-height: 130px;
+main input.inp {
+    width: 140px;
+    height: 140px;
     outline: 5px solid black;
 }
 
