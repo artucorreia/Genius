@@ -45,26 +45,26 @@ const piscaCor = () => {
         switch (sequencia[c]){
             case 1:
                 bip.play();
-                btnGreen.style.background = 'rgb(128, 255, 0)';
-                setTimeout(() => {btnGreen.style.background = 'rgb(55, 110, 0)'}, speed);
+                btnGreen.style.background = colors['greenOn'];
+                setTimeout(() => {btnGreen.style.background = colors['greenOff']}, speed);
                 c++;
                 break;
             case 2:
                 bip.play();
-                btnRed.style.background = 'rgb(255, 0, 51)';
-                setTimeout(() => {btnRed.style.background = 'rgb(117, 0, 23)'}, speed);
+                btnRed.style.background = colors['redOn'];
+                setTimeout(() => {btnRed.style.background = colors['redOff']}, speed);
                 c++;
                 break;
             case 3:
                 bip.play();
-                btnBlue.style.background = 'rgb(0, 191, 255)';
-                setTimeout(() => {btnBlue.style.background = 'rgb(0, 63, 83)'}, speed);
+                btnBlue.style.background = colors['blueOn'];
+                setTimeout(() => {btnBlue.style.background = colors['blueOff']}, speed);
                 c++;
                 break;
             default:
                 bip.play();
-                btnYellow.style.background = 'rgb(255, 166, 0)';
-                setTimeout(() => {btnYellow.style.background = 'rgb(109, 71, 0)'}, speed);
+                btnYellow.style.background = colors['yellowOn'];
+                setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, speed);
                 c++;
                 break;
         }  
@@ -78,15 +78,15 @@ let resp = [];
 let cont = 0;
 let bip = new Audio('./audio/bip.mp3');
 const green = () => {
-    clearInterval(inactiveInterval);
     if (clicked == true) {        
+        clearInterval(inactiveInterval);
         if (open == true) {
             resp[cont] = 1;
             cont++;
             // efeito
             bip.play();
-            btnGreen.style.background = 'rgb(128, 255, 0)';
-            setTimeout(() => {btnGreen.style.background = 'rgb(55, 110, 0)'}, 100);
+            btnGreen.style.background = colors['greenOn'];
+            setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 100);
             verificar();
         }
     } else {
@@ -94,15 +94,15 @@ const green = () => {
     }
 };
 const red = () => {
-    clearInterval(inactiveInterval);
     if (clicked == true) {
+        clearInterval(inactiveInterval);
         if (open == true) {
             resp[cont] = 2;
             cont++;
             // efeito
             bip.play();
-            btnRed.style.background = 'rgb(255, 0, 51)';
-            setTimeout(() => {btnRed.style.background = 'rgb(117, 0, 23)'}, 100);
+            btnRed.style.background = colors['redOn'];
+            setTimeout(() => {btnRed.style.background = colors['redOff']}, 100);
             verificar();
         }
     } else {
@@ -110,15 +110,15 @@ const red = () => {
     }
 };
 const blue = () => {
-    clearInterval(inactiveInterval);
     if (clicked == true) {
+        clearInterval(inactiveInterval);
         if (open == true) {
             resp[cont] = 3;
             cont++;
             // efeito
             bip.play();
-            btnBlue.style.background = 'rgb(0, 191, 255)';
-            setTimeout(() => {btnBlue.style.background = 'rgb(0, 63, 83)'}, 100);
+            btnBlue.style.background = colors['blueOn'];
+            setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 100);
             verificar();
         }
     } else {
@@ -126,15 +126,15 @@ const blue = () => {
     }
 };
 const yellow = () => {
-    clearInterval(inactiveInterval);
     if (clicked == true) {
+        clearInterval(inactiveInterval);
         if (open == true) {
             resp[cont] = 4;
             cont++;
             // efeito
             bip.play();
-            btnYellow.style.background = 'rgb(255, 166, 0)';
-            setTimeout(() => {btnYellow.style.background = 'rgb(109, 71, 0)'}, 100);
+            btnYellow.style.background = colors['yellowOn'];
+            setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 100);
             verificar();
         }
     } else {
@@ -144,10 +144,10 @@ const yellow = () => {
 
 // direciona para funções a partir do elemento pai
 const optionsColor = {
-    'btnGreen':    () => green(),
-    'btnRed': () => red(),
-    'btnYellow':  () => yellow(),
-    'btnBlue':     () => blue(), 
+    'btnGreen':  () => green(),
+    'btnRed':    () => red(),
+    'btnYellow': () => yellow(),
+    'btnBlue':   () => blue(), 
 };
 
 const btns = id => optionsColor[id]();
@@ -228,14 +228,25 @@ const stopTimer = () => {
 
 const turnOnAll = () => {
     bip.play();
-    btnGreen.style.background = 'rgb(128, 255, 0)';
-    btnRed.style.background = 'rgb(255, 0, 51)';
-    btnBlue.style.background = 'rgb(0, 191, 255)';
-    btnYellow.style.background = 'rgb(255, 166, 0)';
-    setTimeout(() => {btnGreen.style.background = 'rgb(55, 110, 0)'}, 200);
-    setTimeout(() => {btnRed.style.background = 'rgb(117, 0, 23)'}, 200);
-    setTimeout(() => {btnBlue.style.background = 'rgb(0, 63, 83)'}, 200);
-    setTimeout(() => {btnYellow.style.background = 'rgb(109, 71, 0)'}, 200);
+    btnGreen.style.background = colors['greenOn'];
+    btnRed.style.background = colors['redOn'];
+    btnBlue.style.background = colors['blueOn'];
+    btnYellow.style.background = colors['yellowOn'];
+    setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 200);
+    setTimeout(() => {btnRed.style.background = colors['redOff']}, 200);
+    setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 200);
+    setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 200);
+};
+
+colors = {
+    greenOn:   '#80ff00',
+    greenOff:  '#376e00',
+    redOn:     '#ff0033',
+    redOff:    '#750017',
+    blueOn:    '#00bfff',
+    blueOff:   '#003f53',
+    yellowOn:  '#ffa600',
+    yellowOff: '#6d4700',
 };
 
 // temporizador
