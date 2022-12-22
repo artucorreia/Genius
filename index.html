@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>Genius</title>
     <link rel="stylesheet" href="style/style.css">
 </head>  
-<body id="main"> 
+<body> 
     <header>
         <h1 class="cab">GENIUS</h1>
-        <h2 class="cab"> 
-            <div id="score"></div>
-            <div id="level"></div>
-            <div id="difficulty"></div>
-        </h2>    
+        <section class="cab"> 
+            <h2 id="score"></h2>
+            <h2 id="level"></h2>
+            <h2 id="difficulty"></h2>
+        </section>    
     </header>
-    <section>
-        <div id="btns">
-            <input type="button" id="verde" class="inp"> 
-            <input type="button" id="vermelho" class="inp"> 
+    <main>
+        <section id="btns">
+            <input type="button" id="btnGreen" class="inp"> 
+            <input type="button" id="btnRed" class="inp"> 
             <br> 
-            <input type="button" id="amarelo" class="inp">
-            <input type="button" id="azul" class="inp"> 
-        </div>
+            <input type="button" id="btnYellow" class="inp">
+            <input type="button" id="btnBlue" class="inp"> 
+        </section>
 
-        <div id="btn">
-            <input type="button" value="INICIAR" id="start">
-        </div>
-    </section>
+        <section>
+            <input type="button" value="INICIAR" id="btnStart">
+        </section>
+    </main>
     <script src="js/script.js"></script>
 </body>
 </html>
