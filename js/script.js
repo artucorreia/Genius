@@ -45,26 +45,26 @@ const piscaCor = () => {
         switch (sequencia[c]){
             case 1:
                 bip.play();
-                btnGreen.style.background = colors['greenOn'];
-                setTimeout(() => {btnGreen.style.background = colors['greenOff']}, speed);
+                colors['greenOn']();
+                setTimeout(() => {colors['greenOff']()}, speed);
                 c++;
                 break;
             case 2:
                 bip.play();
-                btnRed.style.background = colors['redOn'];
-                setTimeout(() => {btnRed.style.background = colors['redOff']}, speed);
+                colors['redOn']();
+                setTimeout(() => {colors['redOff']()}, speed);
                 c++;
                 break;
             case 3:
                 bip.play();
-                btnBlue.style.background = colors['blueOn'];
-                setTimeout(() => {btnBlue.style.background = colors['blueOff']}, speed);
+                colors['blueOn']();
+                setTimeout(() => {colors['blueOff']()}, speed);
                 c++;
                 break;
             default:
                 bip.play();
-                btnYellow.style.background = colors['yellowOn'];
-                setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, speed);
+                colors['yellowOn']();
+                setTimeout(() => {colors['yellowOff']()}, speed);
                 c++;
                 break;
         }  
@@ -79,27 +79,27 @@ let cont = 0;
 let bip = new Audio('./audio/bip.mp3');
 const green = () => {
     resp[cont] = 1;
-    btnGreen.style.background = colors['greenOn'];
-    setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 100);
+    colors['greenOn']();
+    setTimeout(() => {colors['greenOff']()}, 100);
 };
 const red = () => {
     resp[cont] = 2;
-    btnRed.style.background = colors['redOn'];
-    setTimeout(() => {btnRed.style.background = colors['redOff']}, 100);
+    colors['redOn']();
+    setTimeout(() => {colors['redOff']()}, 100);
 };
 const blue = () => {
     resp[cont] = 3;
-    btnBlue.style.background = colors['blueOn'];
-    setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 100);
+    colors['blueOn']();
+    setTimeout(() => {colors['blueOff']()}, 100);
 };
 const yellow = () => {
     resp[cont] = 4;
-    btnYellow.style.background = colors['yellowOn'];
-    setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 100);
+    colors['yellowOn']();
+    setTimeout(() => {colors['yellowOff']()}, 100);
 };
 
 // direciona para funções a partir do elemento pai
-const optionsColor = {
+const turnOn = {
     'btnGreen':  () => green(),
     'btnRed':    () => red(),
     'btnYellow': () => yellow(),
@@ -112,7 +112,7 @@ const Options = id => {
         clearInterval(inactiveInterval);
         if (open == true) {
             bip.play();
-            optionsColor[id]();
+            turnOn[id]();
             cont++;
             verificar();
         }
@@ -123,7 +123,10 @@ const Options = id => {
 
 const sectionBtns = window.document.getElementById('btns');
 sectionBtns.addEventListener('click', (event) => {
-    Options(event.target.id);
+    let id = event.target.id
+    if (id != 'btns' && id != '') {
+        Options(id);
+    }
 });
 
 // verifica a inatividade 
@@ -197,25 +200,32 @@ const stopTimer = () => {
 
 const turnOnAll = () => {
     bip.play();
-    btnGreen.style.background = colors['greenOn'];
-    btnRed.style.background = colors['redOn'];
-    btnBlue.style.background = colors['blueOn'];
-    btnYellow.style.background = colors['yellowOn'];
-    setTimeout(() => {btnGreen.style.background = colors['greenOff']}, 200);
-    setTimeout(() => {btnRed.style.background = colors['redOff']}, 200);
-    setTimeout(() => {btnBlue.style.background = colors['blueOff']}, 200);
-    setTimeout(() => {btnYellow.style.background = colors['yellowOff']}, 200);
+    colors['greenOn']();
+    colors['redOn']();
+    colors['blueOn']();
+    colors['yellowOn']();
+    setTimeout(() => {colors['greenOff']()}, 200);
+    setTimeout(() => {colors['redOff']()}, 200);
+    setTimeout(() => {colors['blueOff']()}, 200);
+    setTimeout(() => {colors['yellowOff']()}, 200);
 };
 
+// botões do genius
+const btnGreen = window.document.getElementById('btnGreen') 
+const btnRed = window.document.getElementById('btnRed')   
+const btnBlue = window.document.getElementById('btnBlue')
+const btnYellow = window.document.getElementById('btnYellow')
+
+// trocar cores
 colors = {
-    greenOn:   '#80ff00',
-    greenOff:  '#376e00',
-    redOn:     '#ff0033',
-    redOff:    '#750017',
-    blueOn:    '#00bfff',
-    blueOff:   '#003f53',
-    yellowOn:  '#ffa600',
-    yellowOff: '#6d4700',
+    greenOn:   () => btnGreen.style.background  = '#80ff00',
+    greenOff:  () => btnGreen.style.background  = '#376e00',
+    redOn:     () => btnRed.style.background    = '#ff0033',
+    redOff:    () => btnRed.style.background    = '#750017',
+    blueOn:    () => btnBlue.style.background   = '#00bfff',
+    blueOff:   () => btnBlue.style.background   = '#003f53',
+    yellowOn:  () => btnYellow.style.background = '#ffa600',
+    yellowOff: () => btnYellow.style.background = '#6d4700',
 };
 
 // temporizador
