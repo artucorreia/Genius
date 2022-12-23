@@ -145,8 +145,6 @@ const inactiveTimer = () => {
         saldoNeg++;
         verificar();
     }
-    console.log(mili)
-    console.log(aux)
 };
 
 const inactive = () => {
