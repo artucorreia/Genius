@@ -181,11 +181,11 @@ const verificar = () => {
             btnStart.style.background = 'white';
             btnStart.value = `REINICIAR`;
         } else {
-            clearInterval(inactiveInterval);
             nivel++;
             pos = 0;
             main();
         }
+        clearInterval(inactiveInterval);
     }
 };
 
