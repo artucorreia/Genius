@@ -110,6 +110,7 @@ const turnOn = {
 const Options = id => {
     if (clicked == true) {
         clearInterval(inactiveInterval);
+        inactive();
         if (open == true) {
             bip.play();
             turnOn[id]();
@@ -144,6 +145,8 @@ const inactiveTimer = () => {
         saldoNeg++;
         verificar();
     }
+    console.log(mili)
+    console.log(aux)
 };
 
 const inactive = () => {
@@ -180,6 +183,7 @@ const verificar = () => {
             btnStart.style.background = 'white';
             btnStart.value = `REINICIAR`;
         } else {
+            clearInterval(inactiveInterval);
             nivel++;
             pos = 0;
             main();
