@@ -78,3 +78,25 @@ main #btnStart {
 main #btnStart:hover {
     background-color: rgb(150, 150, 150);
 }
+
+footer {
+    font: normal normal 0.8em var(--font-padrao);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.308);
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 3px 5px;
+    border-radius: 10%;
+    transition-duration: 0.4s;
+}
+
+footer a:hover {
+    background-color: rgb(60, 60, 60);
+    text-decoration: underline;
+}
