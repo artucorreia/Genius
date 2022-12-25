@@ -108,8 +108,8 @@ const turnOn = {
 
 // procedimento padrão, para todas as cores
 const Options = id => {
-    if (clicked == true) {
-        if (open == true) {
+    if (clicked) {
+        if (open) {
             clearInterval(inactiveInterval);
             inactive();
             bip.play();
