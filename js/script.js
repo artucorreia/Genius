@@ -109,9 +109,9 @@ const turnOn = {
 // procedimento padrão, para todas as cores
 const Options = id => {
     if (clicked == true) {
-        clearInterval(inactiveInterval);
-        inactive();
         if (open == true) {
+            clearInterval(inactiveInterval);
+            inactive();
             bip.play();
             turnOn[id]();
             cont++;
@@ -144,10 +144,6 @@ const inactiveTimer = () => {
         clearInterval(inactiveInterval);
         saldoNeg++;
         verificar();
-    }
-    if (mili % 100 == 0) {
-        console.log(mili)
-        console.log(aux)
     }
 };
 
@@ -281,9 +277,6 @@ const resetVariables = () => {
     resp = [];
     sequencia = [];
     btnStart.value = 'INICIAR';
-    clearInterval(inactiveInterval);
-    mili = 0;
-    aux = 0;
 };
 
 // iniciar
