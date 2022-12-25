@@ -145,6 +145,10 @@ const inactiveTimer = () => {
         saldoNeg++;
         verificar();
     }
+    if (mili % 100 == 0) {
+        console.log(mili)
+        console.log(aux)
+    }
 };
 
 const inactive = () => {
@@ -277,6 +281,9 @@ const resetVariables = () => {
     resp = [];
     sequencia = [];
     btnStart.value = 'INICIAR';
+    clearInterval(inactiveInterval);
+    mili = 0;
+    aux = 0;
 };
 
 // iniciar
