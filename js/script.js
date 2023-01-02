@@ -165,7 +165,7 @@ const saveRecord = n => {
         newRecord = true;
     }
     msgRecord(localStorage.record);
-}
+};
 
 const msgRecord = record => {
     if (newRecord) {
