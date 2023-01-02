@@ -154,14 +154,26 @@ const inactive = () => {
 };
 
 // verificar qual o recorde do jogador
-let recorde = 0;
-const msgRecord = (n) => {
-    if (n > recorde) {
-        recorde = n;
-        difficultyTxt.innerHTML = `Novo Recorde: ${recorde}`;
-    } else {
-        difficultyTxt.innerHTML = `Recorde: ${recorde}`;
+let newRecord = false;
+const saveRecord = n => {
+    let record = localStorage.getItem('record');
+    if (record == null) {
+        localStorage.setItem('record', n);
     }
+    if (n > Number(record)) {
+        localStorage.record = n.toString();
+        newRecord = true;
+    }
+    msgRecord(localStorage.record);
+}
+
+const msgRecord = record => {
+    if (newRecord) {
+        difficultyTxt.innerHTML = `Novo Recorde: ${record}`;
+    } else {
+        difficultyTxt.innerHTML = `Recorde: ${record}`;
+    }
+    newRecord = false;
 };
 
 // verificação
@@ -176,7 +188,7 @@ const verificar = () => {
         if (saldoNeg >= 1){
             score.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
-            msgRecord(nivel);
+            saveRecord(nivel);
             open = false;
             btnStart.style.background = 'white';
             btnStart.value = `REINICIAR`;
