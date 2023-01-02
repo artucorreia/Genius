@@ -25,6 +25,20 @@ header {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.308);
 } 
 
+header > div {
+    position: fixed;
+    top: 3%;
+    right: 2%;
+}
+
+header span {
+    font: normal normal 1em var(--font-padrao);
+}
+
+header abbr {
+    text-decoration: none;
+}
+
 header > .cab {
     margin-top: 2%;
 }
@@ -72,7 +86,7 @@ main #btnStart {
     border-radius: 15px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.486);
     font: normal normal 1.1em var(--font-padrao);
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 main #btnStart:hover {
@@ -93,7 +107,7 @@ footer a {
     text-decoration: none;
     padding: 3px 5px;
     border-radius: 10%;
-    transition-duration: 0.4s;
+    transition-duration: 0.3s;
 }
 
 footer a:hover {

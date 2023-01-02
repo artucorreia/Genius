@@ -153,28 +153,41 @@ const inactive = () => {
     inactiveInterval = setInterval(inactiveTimer, 100);
 };
 
-// verificar qual o recorde do jogador
-let newRecord = false;
-const saveRecord = n => {
-    let record = localStorage.getItem('record');
-    if (record == null) {
-        localStorage.setItem('record', n);
-    }
-    if (n > Number(record)) {
-        localStorage.record = n.toString();
-        newRecord = true;
-    }
-    msgRecord(localStorage.record);
+// muda a pontuação ao lado do troféu
+const trophyRecord = () => {
+    const span = window.document.getElementById('record');
+    span.innerHTML = `${localStorage.record}`;
 };
 
-const msgRecord = record => {
+const msgRecord = () => {
     if (newRecord) {
-        difficultyTxt.innerHTML = `Novo Recorde: ${record}`;
+        difficultyTxt.innerHTML = `Novo Recorde`;
     } else {
-        difficultyTxt.innerHTML = `Recorde: ${record}`;
+        difficultyTxt.innerHTML = '';
     }
     newRecord = false;
 };
+
+// verificar qual o recorde do jogador
+let newRecord = false;
+const recordSystem = n => {
+    let record = localStorage.getItem('record');
+    if (n > Number(record)) {
+        localStorage.record = n.toString();
+        newRecord = true;
+        trophyRecord();
+    }
+    msgRecord();
+};
+
+// criar localStorage
+;(() => {
+    let record = localStorage.getItem('record');
+    if (record == null) {
+        localStorage.setItem('record', 0);
+    }
+    trophyRecord();
+})();
 
 // verificação
 let saldoNeg = 0;
@@ -188,7 +201,7 @@ const verificar = () => {
         if (saldoNeg >= 1){
             score.innerHTML = `Você perdeu`;
             level.innerHTML = `Pontuação: ${nivel}`;
-            saveRecord(nivel);
+            recordSystem(nivel);
             open = false;
             btnStart.style.background = 'white';
             btnStart.value = `REINICIAR`;
