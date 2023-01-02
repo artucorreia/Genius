@@ -1,7 +1,7 @@
 // mensagens
 const mensagens = () => {
-    score.innerHTML = `Pontuação: `;
-    score.innerHTML += `${nivel}`;
+    // score.innerHTML = `Pontuação: `;
+    // score.innerHTML += `${nivel}`;
     level.innerHTML = `Nível: `;
     level.innerHTML += `${nivel+1}`;
     difficultyTxt.innerHTML = `Dificuldade: `;
@@ -199,8 +199,8 @@ const verificar = () => {
     pos++;
     if ((saldoNeg != 0) || (resp.length == sequencia.length)) {
         if (saldoNeg >= 1){
-            score.innerHTML = `Você perdeu`;
-            level.innerHTML = `Pontuação: ${nivel}`;
+            // score.innerHTML = `Você perdeu`;
+            level.innerHTML = `Você perdeu <br> Pontos: ${nivel}`;
             recordSystem(nivel);
             open = false;
             btnStart.style.background = 'white';
